@@ -14,43 +14,104 @@
 </head>
 
 <body>
-    <div class="arena">
-        <h1>Rock, paper, scissors!</h1>
-        <h2>Round: 5</h2>
+    <div class="arena" id="arena">
+        <h1 v-text="gamename"></h1>
+        <h2>Round: {{round}}</h2>
         <div class="gameboard">
             <div class="gamecard">
                 <div class="player">
                     <div class="playercard">
                         <h3>Player 1</h3>
                         <div class="hands">
-                            <i class="fa-solid fa-hand-scissors fa-3x"></i>
-                            <i class="fa-solid fa-hand fa-3x"></i>
-                            <i class="fa-solid fa-hand-back-fist fa-3x"></i>
+                            <i @click="madechoice(1)" class="fa-solid fa-hand-back-fist fa-3x"></i>
+                            <i @click="madechoice(2)" class="fa-solid fa-hand fa-3x"></i>
+                            <i @click="madechoice(3)" class="fa-solid fa-hand-scissors fa-3x"></i>
                         </div>
-                        <h3>your choice: Rock</h3>
+                        <h3>your choice: {{choice[pselected]}}</h3>
                     </div>
 
-                    <div class="score">3</div>
+                    <div class="score" v-text="pscore"></div>
                 </div>
                 <div class="state_of_game">
-                    <h2>you won!!!</h2>
+                    <h2 v-text="stateOfGame"></h2>
                 </div>
                 <div class="computer">
                     <div class="playercard">
                         <h3>Computer</h3>
                         <div class="hands">
-                            <i class="fa-solid fa-hand-scissors fa-3x"></i>
+                            <i v-if="cselected==1" class="fa-solid fa-hand-back-fist fa-3x"></i>
+                            <i v-if="cselected==2" class="fa-solid fa-hand fa-3x"></i>
+                            <i v-if="cselected==3" class="fa-solid fa-hand-scissors fa-3x"></i>
                         </div>
-                        <h3>your choice: Rock</h3>
+                        <h3>Computer's choice: {{choice[cselected]}}</h3>
                     </div>
 
-                    <div class="score">2</div>
+                    <div class="score" v-text="cscore"></div>
                 </div>
             </div>
         </div>
-        <button type="reset">Reset</button>
+        <button type="reset" @click="reset()">Reset</button>
 
     </div>
+
+    <script src="https://unpkg.com/vue@3.0.7/dist/vue.global.js"></script>
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    gamename: "Rock, paper, scissors!",
+                    stateOfGameChoices: ['Let\'s go', 'draw', 'Player wins the round', 'computer wins the round', 'Player wins!!!', 'Computer wins!!!'],
+                    round: 0,
+                    cselected: 0,
+                    pselected: 0,
+                    pscore: 0,
+                    cscore: 0,
+                    choice: ['', 'Rock', 'Paper', 'scissors'],
+                    stateOfGame: 'Let\'s go',
+                }
+            },
+            methods: {
+                madechoice(select) {
+                    if (this.pscore < 10 && this.cscore < 10) {
+                        this.round += 1;
+                        this.pselected = select;
+                        this.cselected = Math.max(Math.floor(Math.random() * 4), 1);
+
+
+                        if (this.pselected === this.cselected) {
+                            this.stateOfGame = this.stateOfGameChoices[1];
+                        }
+                        else if ((this.pselected == 1 && this.cselected == 3) || (this.pselected == 2 && this.cselected == 1) || (this.pselected == 3 && this.cselected == 2)) {
+                            this.pscore += 1;
+                            this.stateOfGame = this.stateOfGameChoices[2];
+                        }
+                        else {
+                            this.cscore += 1;
+                            this.stateOfGame = this.stateOfGameChoices[3];
+                        }
+
+                        if (this.pscore == 10) {
+                            this.stateOfGame = this.stateOfGameChoices[4];
+                        }
+
+                        if (this.cscore == 10) {
+                            this.stateOfGame = this.stateOfGameChoices[5];
+                        }
+                    }
+
+                },
+                reset() {
+                    this.pscore = 0;
+                    this.cscore = 0;
+                    this.round = 0;
+                    this.stateOfGame = this.stateOfGameChoices[0];
+                }
+            },
+        })
+        app.mount('#arena')
+
+    </script>
 </body>
 
 </html>
