@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock, paper, scissors!</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div class="arena">
+        <h1>Rock, paper, scissors!</h1>
+        <h2>Round: 5</h2>
+        <div class="gameboard">
+            <div class="gamecard">
+                <div class="player">
+                    <div class="playercard">
+                        <h3>Player 1</h3>
+                        <div class="hands">
+                            <i class="fa-solid fa-hand-scissors fa-3x"></i>
+                            <i class="fa-solid fa-hand fa-3x"></i>
+                            <i class="fa-solid fa-hand-back-fist fa-3x"></i>
+                        </div>
+                        <h3>your choice: Rock</h3>
+                    </div>
+
+                    <div class="score">3</div>
+                </div>
+                <div class="state_of_game">
+                    <h2>you won!!!</h2>
+                </div>
+                <div class="computer">
+                    <div class="playercard">
+                        <h3>Computer</h3>
+                        <div class="hands">
+                            <i class="fa-solid fa-hand-scissors fa-3x"></i>
+                        </div>
+                        <h3>your choice: Rock</h3>
+                    </div>
+
+                    <div class="score">2</div>
+                </div>
+            </div>
+        </div>
+        <button type="reset">Reset</button>
+
+    </div>
+</body>
+
+</html>
