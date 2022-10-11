@@ -1,5 +1,6 @@
 body {
-    background-color: blue;
+    background: rgb(37, 37, 231);
+    background: linear-gradient(90deg, rgba(37, 37, 231, 1) 0%, rgba(9, 9, 121, 1) 100%);
     margin: 0px;
 }
 
@@ -61,16 +62,27 @@ h2 {
     justify-content: space-evenly;
 }
 
+@media only screen and (width>0px) {
+    body {
+        background: rgb(37, 37, 231);
+    }
+}
 
 @media only screen and (width>400px) {
     .state_of_game {
         width: 650px;
     }
+
 }
 
 @media only screen and (width> 950px) {
     .state_of_game {
         width: 200px;
+    }
+
+    body {
+        background: rgb(37, 37, 231);
+        background: linear-gradient(90deg, rgba(37, 37, 231, 1) 0%, rgba(9, 9, 121, 1) 100%);
     }
 }
 
@@ -79,4 +91,12 @@ h2 {
 
 button {
     width: 100px;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.player i {
+    cursor: pointer;
 }
